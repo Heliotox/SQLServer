@@ -1,3 +1,5 @@
+--Script for finding tables that have either no indexes, or no clustered index
+
 SELECT DB_Name(), tables.NAME, 
        (SELECT rows 
         FROM   sys.partitions 
