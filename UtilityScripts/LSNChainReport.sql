@@ -1,5 +1,5 @@
 DECLARE @db_name VARCHAR(100) 
-SELECT @db_name = 'NGProd' 
+SELECT @db_name = '[DBNAME]' 
  
 SELECT  
 BS.server_name AS [Server Name] 
@@ -14,6 +14,8 @@ END AS [Type of Backup]
 ,BS.backup_start_date AS [Backup Date] 
 ,BS.first_lsn AS [First LSN] 
 ,BS.last_lsn AS [Last LSN] 
+,BS.checkpoint_lsn AS [Checkpoint LSN]
+,BS.database_backup_lsn AS [DB Backup LSN]
 FROM msdb.dbo.backupset BS 
 INNER JOIN msdb.dbo.backupmediafamily BMF ON BS.media_set_id = BMF.media_set_id 
 WHERE BS.database_name = @db_name 
